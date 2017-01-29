@@ -5,11 +5,11 @@ from setuptools import setup
 setup(
     name='pytipr',
     description='The Python Template In-Place Replacer',
-    version="0.01",
+    version="0.1",
     author='The pytipr Developers',
     author_email='cmarqu42@gmail.com',
     url='https://github.com/pytipr/pytipr',
-    packages=['pytipr'],
+    packages=['tipr'],
     install_requires=['pytest'],
     classifiers=[
         'Development Status :: 1 - Planning',
