@@ -7,7 +7,7 @@ env:
   - TOX_ENV=py27
   - TOX_ENV=py26
 install:
-  - pip install -e . --use-mirrors
+  - pip install -e .
   - pip install tox
   - pip install python-coveralls
 script:
