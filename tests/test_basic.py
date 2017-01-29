@@ -23,12 +23,18 @@ def datadir(tmpdir, request):
 
     return tmpdir
 
-@pytest.mark.parametrize("act,exp", [
-    ("Test 0", "Test 0"),
-    ("Foobar", "Foobar"),
+@pytest.mark.parametrize('act,exp', [
+    ('Test 0\\', 'Test 0\\'),
+    ('Foo\nbar', 'Foo\nbar'),
+    (
+        '''Foo
+        bar''',
+        '''Foo
+        bar'''),
 ])
 # uses datadir fixture from above:
 def test_file(datadir, act, exp):
+    '''Write and read the same file, check content stays unchanged.'''
     filename = 'file_1.ini'
     filename_abs = datadir.join(filename)
     tipr.write_file(filename=filename_abs, text=act)
