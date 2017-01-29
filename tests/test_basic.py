@@ -26,6 +26,7 @@ def datadir(tmpdir, request):
 @pytest.mark.parametrize('act,exp', [
     ('Test 0\\', 'Test 0\\'),
     ('Foo\nbar', 'Foo\nbar'),
+    ('Räksmörgås', 'Räksmörgås'),
     (
         '''Foo
         bar''',
