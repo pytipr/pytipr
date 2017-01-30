@@ -9,14 +9,20 @@ import argparse
 
 import tipr
 
-parser = argparse.ArgumentParser(description='replace templates in-place')
-parser.add_argument('filename', type=str, default='hello.txt',
-                    help='replace template in this file')
-parser.add_argument('-v', '--verbose', help='increase output verbosity',
-                    action='store_true')
-args = parser.parse_args()
 
-if __name__ == '__main__':
+def main():
+    '''The main entry.'''
+    parser = argparse.ArgumentParser(description='replace templates in-place')
+    parser.add_argument('filename', type=str, default='hello.txt',
+                        help='replace template in this file')
+    parser.add_argument('-v', '--verbose', help='increase output verbosity',
+                        action='store_true')
+    args = parser.parse_args()
+
     if args.verbose:
         print('Working on file {0}'.format(args.filename))
     tipr.write_file(args.filename)
+
+
+if __name__ == '__main__':
+    main()

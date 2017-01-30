@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+'''Basic tests.'''
+
 import os
 import pytest
 import shutil
 
 import tipr
 
+# pylint: disable=W0621
 @pytest.fixture
 def datadir(tmpdir, request):
     '''
@@ -23,6 +26,7 @@ def datadir(tmpdir, request):
 
     return tmpdir
 
+
 @pytest.mark.parametrize('act,exp', [
     ('Test 0\\', 'Test 0\\'),
     ('Foo\nbar', 'Foo\nbar'),
@@ -39,6 +43,6 @@ def test_file(datadir, act, exp):
     filename = 'file_1.ini'
     filename_abs = datadir.join(filename)
     tipr.write_file(filename=filename_abs, text=act)
-    with open(str(filename_abs), 'r') as f:
-        content = f.read()
+    with open(str(filename_abs), 'r') as fobj:
+        content = fobj.read()
     assert content == exp
