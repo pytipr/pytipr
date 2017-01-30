@@ -9,6 +9,7 @@ env:
 install:
   - pip install -e .
   - pip install tox
+  - pip install Mako
   - pip install python-coveralls
 script:
   - tox -e $TOX_ENV
