@@ -10,7 +10,7 @@ setup(
     author_email='cmarqu42@gmail.com',
     url='https://github.com/pytipr/pytipr',
     packages=['tipr'],
-    install_requires=['pytest'],
+    install_requires=['pytest', 'Mako'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
