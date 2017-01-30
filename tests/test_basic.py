@@ -58,17 +58,17 @@ def test_mako(tmpdir):
     outfilename = str(tmpdir.join('out.txt'))
     with open(tmplfilename, 'w') as fobj:
         fobj.write('hello ${word}')
-    tmpl = Template(filename=tmplfilename, module_directory='.')
+    tobj = Template(filename=tmplfilename, module_directory='.')
     with open(outfilename, 'w') as fobj:
-        print(tmpl.render(word='world'), file=fobj)
+        fobj.write(tobj.render(word='world'))
     with open(outfilename, 'r') as fobj:
         content = fobj.read()
-    assert content == 'hello world\n'
+    assert content == 'hello world'
 
 
 @pytest.mark.parametrize('tmpl, word, exp', [
-    ('hello ${word}', 'world', 'hello world\n'),
-    ('${word}\n${word}', 'foo', 'foo\nfoo\n'),
+    ('hello ${word}', 'world', 'hello world'),
+    ('${word}\n${word}', 'foo', 'foo\nfoo'),
 ])
 def test_mako2(tmpdir, tmpl, word, exp):
     '''Generate a mako template, render it to file, check file is correct.'''
@@ -78,7 +78,7 @@ def test_mako2(tmpdir, tmpl, word, exp):
         fobj.write(tmpl)
     tobj = Template(filename=tmplfilename, module_directory='.')
     with open(outfilename, 'w') as fobj:
-        print(tobj.render(word=word), file=fobj)
+        fobj.write(tobj.render(word=word))
     with open(outfilename, 'r') as fobj:
         content = fobj.read()
     assert content == exp
