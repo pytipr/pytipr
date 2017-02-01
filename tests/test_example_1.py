@@ -40,12 +40,21 @@ user code 2
 
 def test_example_1(tmpdir):
     '''Check that tipr.do() does the right thing with a well-behaved example.'''
-    infilename = str(tmpdir.join('input.txt'))
-    outfilename = str(tmpdir.join('output.txt'))
-    with open(infilename, 'w') as fobj:
+    infilename1 = str(tmpdir.join('input1.txt'))
+    outfilename1 = str(tmpdir.join('output1.txt'))
+    infilename2 = str(tmpdir.join('input2.txt'))
+    outfilename2 = str(tmpdir.join('output2.txt'))
+    with open(infilename1, 'w') as fobj:
         fobj.write(tipr_input)
-    tipr.do(infilename,  outfilename)
-    with open(outfilename, 'r') as fobj:
+    tipr.do(infilename1,  outfilename1)
+    with open(outfilename1, 'r') as fobj:
         tipr_output_act = fobj.read()
     assert tipr_output_exp == tipr_output_act
-    # FIXME: repeat tipr.do() on outfilename; must still be the same
+
+    # FIXME: repeat tipr.do() on output; must still be the same
+    #with open(infilename2, 'w') as fobj:
+    #    fobj.write(tipr_output_act)
+    #tipr.do(infilename2,  outfilename2)
+    #with open(outfilename2, 'r') as fobj:
+    #    tipr_output_act = fobj.read()
+    #assert tipr_output_exp == tipr_output_act

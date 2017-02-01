@@ -12,18 +12,20 @@ def write_file(filename, text='Hello world!'):
 
 def do(infilename, outfilename):
     '''Read infilename, do transformation, write outfilename.'''
+    namespace = {}
     with open(infilename, 'r') as rfobj, open(outfilename, 'w') as wfobj:
         for line in rfobj:
             if line.startswith('## tipr_'):  # hey, something interesting
                 if line.startswith('## tipr_result_is'):
                     wfobj.write(line)  # repeat in output
                     code = line[len('## '):]
-                    print('code={0}'.format(code))
-                    exec(code)  # tipr_result_is will be filled now
-                    print('tipr_result_is={0}'.format(tipr_result_is))
+                    #print('code={0}'.format(code))
+                    exec(code, namespace)  # needed in Python 3
+                    tipr_result_is = namespace['tipr_result_is']
+                    #print('tipr_result_is={0}'.format(tipr_result_is))
                 if line.startswith('## tipr_result_start'):
                     wfobj.write(line)  # repeat in output
-                    wfobj.write(tipr_result_is)  # write the result
+                    wfobj.write(tipr_result_is+'\n')  # write the result
                 if line.startswith('## tipr_result_end'):
                     wfobj.write(line)  # repeat in output
                 # tipr_code_start and tipr_code_end:
