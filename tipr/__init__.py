@@ -4,8 +4,14 @@
 
 from __future__ import print_function
 
+import logging
+
 def write_file(filename, text='Hello world!'):
     '''Write a simple file.'''
+
+    write_file_log = logging.getLogger('tipr.write_file')
+    write_file_log.debug('write_file function called')
+
     with open(str(filename), 'w') as fobj:
         fobj.write(text)
 

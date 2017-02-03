@@ -6,12 +6,13 @@
 from __future__ import print_function
 
 import argparse
+import logging
 
 import tipr
 
-
 def main():
     '''The main entry.'''
+    
     parser = argparse.ArgumentParser(description='replace templates in-place')
     parser.add_argument('filename', type=str, default='hello.txt',
                         help='replace template in this file')
@@ -19,8 +20,16 @@ def main():
                         action='store_true')
     args = parser.parse_args()
 
+    # create logger
+    logging.basicConfig()
+    logger = logging.getLogger('tipr')
+
     if args.verbose:
-        print('Working on file {0}'.format(args.filename))
+        logger.setLevel(logging.DEBUG)
+
+    mainlog = logging.getLogger('tipr.main')
+
+    mainlog.debug('Working on file {0}'.format(args.filename))
     tipr.write_file(args.filename)
 
 
