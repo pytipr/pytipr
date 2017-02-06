@@ -9,7 +9,7 @@ import os
 import pytest
 import shutil
 
-import tipr
+from tipr import tipr
 
 
 # pylint: disable=W0621
