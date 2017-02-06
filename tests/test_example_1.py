@@ -85,6 +85,19 @@ user code 1
 user code 2
 '''
 
+tipr_output_case_exp = '''
+## user comment 1
+user code 1
+## tipr_Code_start
+## tipr_result_IS="foo"
+## tIpr_code_end
+## tiPr_result_start
+foo
+## Tipr_Result_End
+## user comment 2
+user code 2
+'''
+
 
 def test_case_insensitive_parsing(tmpdir):
     '''Check that tipr.do() does case-insensitive parsing of magic strings.'''
@@ -97,4 +110,4 @@ def test_case_insensitive_parsing(tmpdir):
     tipr.do(infilename1,  outfilename1)
     with open(outfilename1, 'r') as fobj:
         tipr_output_act = fobj.read()
-    assert tipr_output_exp == tipr_output_act
+    assert tipr_output_case_exp == tipr_output_act
