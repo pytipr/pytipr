@@ -6,9 +6,30 @@ The Python Template In-Place Replacer
 [![Coverage Status](https://coveralls.io/repos/github/pytipr/pytipr/badge.svg?branch=master)](https://coveralls.io/github/pytipr/pytipr?branch=master)
 
 ## Example
-```shell
-## TBD
+Input:
+```python
+## user comment 1
+user code 1
+## tipr_code_start
+## tipr_result_is="foo"
+## tipr_code_end
+## tipr_result_start
+## tipr_result_end
+## user comment 2
+user code 2
+```
 
-User code that will be unaffected.
+Output (note the ``foo``) line:
+```python
+## user comment 1
+user code 1
+## tipr_code_start
+## tipr_result_is="foo"
+## tipr_code_end
+## tipr_result_start
+foo
+## tipr_result_end
+## user comment 2
+user code 2
 
 ```
