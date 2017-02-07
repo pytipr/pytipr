@@ -7,6 +7,7 @@ from __future__ import print_function
 
 import argparse
 import logging
+import shutil
 
 from tipr import tipr
 
@@ -30,8 +31,11 @@ def main():
 
     mainlog = logging.getLogger('tipr.main')
 
+    backupfile = args.filename+".bak"
+    mainlog.debug('Creating backup file {0}'.format(backupfile))
+    shutil.copyfile(args.filename, backupfile)
     mainlog.debug('Working on file {0}'.format(args.filename))
-    tipr.write_file(args.filename)
+    tipr.do(backupfile, args.filename)
 
 
 if __name__ == '__main__':
